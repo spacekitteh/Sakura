@@ -1,0 +1,82 @@
+* Overview
+** Type theory							     :Theory:
+*** Core type theory
+**** Martin-Lof type theory
+**** Telescopes in everything to do with binders/data
+**** Homotopy
+***** Currently, cubical sets with connections
+**** Higher dialgebraic types
+    - Generate induction, coinduction, diinduction principles
+**** FFI
+**** Wishlist
+   * Linear typing 
+   * Nominal atoms 
+   * Dimension/unit typing
+    
+*** Optimisation type theory
+** Language							   :Language:
+*** Idris/Agda-like syntax
+**** ":" for "has type"
+**** "--" for single line comments, /* */ for multi
+*** Custom syntax definitions
+    Not too hard to do. The way Idris does it is pretty decent.
+**** TODO Look at Coq, Idris, Agda's "notation" implementations
+*** Equational reasoning proof language
+**** Coq-style
+**** Others?
+*** Tactics proof language
+**** Kinda like Coq's $L_{tac}$. 
+*** Strictness annotations
+**** Ability to strictify a datastructure without changing original definition
+***** Create new data structure with strictness, and insert homotopy equivalences where required in generated code
+*** Lenses and other optics created automatically for data types
+*** Catagorical definitions a la CDT by Hagino
+*** Literate programming support
+**** Maybe markdown syntax support?
+*** Wishlist
+**** ML style modules
+** Compiler
+*** Lenses
+   Lots of lenses! Since it will be lots of deeply nested stuff, lenses and and other optics seem the way to go here.
+*** Compositional data types
+    Compdata looks to be the way to go.
+*** Nominal terms design
+    This way, there is lots of standardised terminology and theory to work with.
+**** Wishlist
+***** Type providers
+* Design
+** Compiler
+*** Syntax trees
+    Use compdata or something similar
+**** TODO Lensify compdata
+**** TODO Define core ADT
+**** TODO Define binder structure
+**** TODO Create nominal term class
+     
+*** Parsing
+    Probably parsec, megaparsec, or bnfc
+**** TODO Evaluate parsec, megaprasec, and bnfc for suitability
+*** Surface -> Core + Sugar + Dev transformation
+    Induction could be a sugared syntax, for example
+*** Desugaring transformation
+    All the constructs available in the sugared syntax, such as induction syntax, could be desugared into standard function syntax
+*** Core + Dev operations 
+    This is where the proof assistant part operates. Holes, guesses, etc all live in the Dev syntactic category, and once all holes are gone and all guesses are verified correct, it it leaves the Dev realm to be pure Core.
+*** Core  simplifications
+    High level optimisations occur here.
+*** Core -> Core + OptTT transformation
+    OptTT has optimisation constructs which are ineffecient to represent in Core, and can be reasoned about easier. 
+*** Core + OptTT -> GRIN transformation
+    GRIN is an excellent low level language for optimising functional languages, even dependent ones.
+*** GRIN -> LLVM transformation
+    GRIN can be transformed to LLVM relatively stragihtforwardly
+
+** RTS
+*** Garbage collection
+    Multicore garbage collection from that paper
+**** TODO Cite that paper
+
+** Tooling
+   Expose as much as possible in the compiler in a nice user interface. Ideally, every function/interface which maintains all invariants should be exposed in a library.
+*** Emacs mode
+**** Syntax highlighting

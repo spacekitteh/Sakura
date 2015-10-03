@@ -1,3 +1,12 @@
 [submodule "lib/data-category"]
 	path = lib/data-category
 	url = https://github.com/spacekitteh/data-category.git
+[submodule "lib/nominal"]
+	path = lib/nominal
+	url = https://github.com/spacekitteh/nominal.git
+[submodule "lib/permutation"]
+	path = lib/permutation
+	url = https://github.com/spacekitteh/permutation.git
+[submodule "lib/compdata"]
+	path = lib/compdata
+	url = https://github.com/spacekitteh/compdata.git
