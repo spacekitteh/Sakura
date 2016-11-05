@@ -9,15 +9,17 @@
     - Generate induction, coinduction, diinduction principles
 **** FFI
 **** Wishlist
-   * Linear typing 
+   * Linear typing
    * Nominal atoms 
    * Dimension/unit typing
+     Could be done at surface sugar level.
     
 *** Optimisation type theory
 ** Language							   :Language:
 *** Idris/Agda-like syntax
 **** ":" for "has type"
 **** "--" for single line comments, /* */ for multi
+**** Typeclasses
 *** Custom syntax definitions
     Not too hard to do. The way Idris does it is pretty decent.
 **** TODO Look at Coq, Idris, Agda's "notation" implementations
@@ -28,11 +30,12 @@
 **** Kinda like Coq's $L_{tac}$. 
 *** Strictness annotations
 **** Ability to strictify a datastructure without changing original definition
-***** Create new data structure with strictness, and insert homotopy equivalences where required in generated code
+***** Create new data structure with strictness, and insert homotopy equivalences where required in generated code. Since we have a total language, it will be semantically equivalent.
 *** Lenses and other optics created automatically for data types
 *** Catagorical definitions a la CDT by Hagino
 *** Literate programming support
 **** Maybe markdown syntax support?
+     Something to make it easy to do titles and sections and references and such. Either markdown or LaTeX, anyway.
 *** Wishlist
 **** ML style modules
 ** Compiler
@@ -59,7 +62,7 @@
 *** Surface -> Core + Sugar + Dev transformation
     Induction could be a sugared syntax, for example
 *** Desugaring transformation
-    All the constructs available in the sugared syntax, such as induction syntax, could be desugared into standard function syntax
+    All the constructs available in the sugared syntax, such as induction syntax, could be desugared into standard function syntax. This is where all automatically generated code would probably appear.
 *** Core + Dev operations 
     This is where the proof assistant part operates. Holes, guesses, etc all live in the Dev syntactic category, and once all holes are gone and all guesses are verified correct, it it leaves the Dev realm to be pure Core.
 *** Core  simplifications
@@ -76,6 +79,10 @@
     Multicore garbage collection from that paper
 **** TODO Cite that paper
 
+**** Use Statepoint infrastruction which produces stackmaps.
+
+*** GMP/MPFR
+**** Is there any real need for inbuilt GMP/MPFR support? A much more flexible option would be to do it via FFI but then I'd have to introduce language support for all the nasty shit that that entails
 ** Tooling
    Expose as much as possible in the compiler in a nice user interface. Ideally, every function/interface which maintains all invariants should be exposed in a library.
 *** Emacs mode
